@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Jhooomn</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" ></link>
+
+    </h:head>
+    <h:body>
+        <div class="container">
+            <br></br>
+            <h3 class="animated bounce">Testing JSF + JPA</h3>
+            <br></br>
+        </div>
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-4">
+                    <h:form>
+
+                        <h:panelGrid columns="2">
+
+                            <h:outputText value="Username:" class="mr-2"></h:outputText>
+                            <p:inputText value="#{userController.user.username}"  required="true"></p:inputText>
+
+                            <h:outputText value="Fullname:" class="mr-2"></h:outputText>
+                            <p:inputText value="#{userController.user.fullname}" required="true"></p:inputText>
+
+                            <h:outputText value="E-mail:" class="mr-2"></h:outputText>
+                            <p:inputText value="#{userController.user.email}" required="true"></p:inputText>
+
+                        </h:panelGrid>
+                        <h:commandButton action="#{userController.addUser()}" class="btn btn-dark" value="Add"></h:commandButton>
+                    </h:form>
+                    <p:growl></p:growl>
+                </div>
+
+                <div class="col-md-7">
+                    <h:form>
+                        <p:dataTable var="u" value="#{userController.userlist}" style="text-align: center">
+                            <p:column headerText="ID">
+                                <h:outputText value="#{u.iduser}" />
+                            </p:column>
+
+                            <p:column headerText="Fullname">
+                                <h:outputText value="#{u.fullname}" />
+                            </p:column>
+
+                            <p:column headerText="Username">
+                                <h:outputText value="#{u.username}" />
+                            </p:column>
+
+                            <p:column headerText="E-mail">
+                                <h:outputText value="#{u.email}" />
+                            </p:column>
+
+                            <p:column headerText="Delete">
+                                <h:commandLink value="X" action="#{userController.deleteUser(u)}"></h:commandLink>
+                            </p:column>
+
+                            <p:column headerText="Update">
+                                <h:commandLink value="U" action="#{userController.updateUser(u)}"></h:commandLink>
+                            </p:column>
+
+                        </p:dataTable>
+                    </h:form>
+                    <p:growl></p:growl>
+                </div>
+            </div>
+
+        </div>
+    </h:body>
+</html>
+
